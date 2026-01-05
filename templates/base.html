@@ -105,7 +105,7 @@
                                     <div class="dropdown-item text-muted small">Role: {{ current_user.role }}</div>
                                     <div class="dropdown-divider"></div>
                                     <form method="post" action="{{ url_for('auth.logout') }}" class="px-3 py-1">
-                                        {{ csrf_token() }}
+                                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                         <button class="btn btn-sm btn-danger btn-block" type="submit">Logout</button>
                                     </form>
                                 </div>

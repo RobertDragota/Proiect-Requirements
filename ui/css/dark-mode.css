@@ -1,202 +1,703 @@
-/* Gruvbox-ish soft dark theme overrides for SB Admin 2.
-   Applies only when html.dark-mode is present (toggled in templates/base.html).
-   Palette reference (soft): bg #32302f, bg0 #282828, fg #ebdbb2, fg dim #d5c4a1,
-   gray #a89984, border #504945, red #cc241d, green #98971a, yellow #d79921,
-   blue #458588, purple #b16286, aqua #689d6a, orange #d65d0e.
+/* Modern Dark Theme for PSYCare
+   A sleek, professional dark theme with glass morphism effects
+   Palette: Deep navy backgrounds, vibrant accent colors, subtle gradients
 */
 
+/* ============================================
+   CSS CUSTOM PROPERTIES FOR DARK MODE
+   ============================================ */
 html.dark-mode {
+  --dm-bg-primary: #0f172a;
+  --dm-bg-secondary: #1e293b;
+  --dm-bg-tertiary: #334155;
+  --dm-bg-card: rgba(30, 41, 59, 0.8);
+  --dm-bg-glass: rgba(30, 41, 59, 0.6);
+  --dm-text-primary: #f1f5f9;
+  --dm-text-secondary: #94a3b8;
+  --dm-text-muted: #64748b;
+  --dm-border: rgba(148, 163, 184, 0.1);
+  --dm-border-light: rgba(148, 163, 184, 0.05);
+  --dm-accent-blue: #3b82f6;
+  --dm-accent-purple: #8b5cf6;
+  --dm-accent-cyan: #06b6d4;
+  --dm-accent-green: #10b981;
+  --dm-accent-yellow: #f59e0b;
+  --dm-accent-red: #ef4444;
+  --dm-accent-pink: #ec4899;
+  --dm-glow-blue: rgba(59, 130, 246, 0.3);
+  --dm-glow-purple: rgba(139, 92, 246, 0.3);
   color-scheme: dark;
 }
 
 html.dark-mode body {
-  background-color: #282828;
-  color: #ebdbb2;
+  background: linear-gradient(135deg, var(--dm-bg-primary) 0%, #1a1f35 100%);
+  color: var(--dm-text-primary);
+  min-height: 100vh;
 }
 
-/* Page chrome */
+/* ============================================
+   PAGE STRUCTURE
+   ============================================ */
 html.dark-mode #content-wrapper,
 html.dark-mode #content {
-  background-color: #282828;
+  background: transparent;
 }
 
+html.dark-mode #wrapper {
+  background: linear-gradient(180deg, var(--dm-bg-primary) 0%, #0c1222 100%);
+}
+
+/* ============================================
+   TOP NAVIGATION BAR
+   ============================================ */
 html.dark-mode .topbar.navbar {
-  background-color: #32302f !important;
-  border-bottom: 1px solid #504945;
+  background: var(--dm-bg-glass) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--dm-border);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
 }
 
 html.dark-mode .topbar .nav-link,
-html.dark-mode .topbar .text-gray-600,
-html.dark-mode .topbar .dropdown-item {
-  color: #ebdbb2 !important;
+html.dark-mode .topbar .text-gray-600 {
+  color: var(--dm-text-primary) !important;
+  transition: all 0.3s ease;
+}
+
+html.dark-mode .topbar .nav-link:hover {
+  color: var(--dm-accent-blue) !important;
+  text-shadow: 0 0 20px var(--dm-glow-blue);
 }
 
 html.dark-mode .topbar .dropdown-menu {
-  background-color: #32302f;
-  border-color: #504945;
+  background: var(--dm-bg-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--dm-border);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+html.dark-mode .topbar .dropdown-item {
+  color: var(--dm-text-primary) !important;
+  border-radius: 0.5rem;
+  margin: 0.25rem 0.5rem;
+  transition: all 0.2s ease;
+}
+
+html.dark-mode .topbar .dropdown-item:hover {
+  background: linear-gradient(135deg, var(--dm-accent-blue), var(--dm-accent-purple));
+  color: white !important;
+  transform: translateX(4px);
 }
 
 html.dark-mode .topbar .dropdown-divider {
-  border-top-color: #504945;
+  border-top-color: var(--dm-border);
 }
 
+/* ============================================
+   SIDEBAR
+   ============================================ */
 html.dark-mode .sidebar,
 html.dark-mode .sidebar.bg-gradient-primary {
-  background-image: none !important;
-  background-color: #3c3836 !important;
+  background: linear-gradient(180deg, var(--dm-bg-secondary) 0%, var(--dm-bg-primary) 100%) !important;
+  border-right: 1px solid var(--dm-border);
+  box-shadow: 4px 0 30px rgba(0, 0, 0, 0.3);
 }
 
-html.dark-mode .sidebar .sidebar-brand,
-html.dark-mode .sidebar .sidebar-brand-text,
-html.dark-mode .sidebar .nav-link,
-html.dark-mode .sidebar .sidebar-heading {
-  color: #ebdbb2 !important;
+html.dark-mode .sidebar .sidebar-brand {
+  background: linear-gradient(135deg, var(--dm-accent-blue), var(--dm-accent-purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding: 1.5rem 1rem;
+}
+
+html.dark-mode .sidebar .sidebar-brand-text {
+  color: var(--dm-text-primary) !important;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+html.dark-mode .sidebar .sidebar-brand-icon {
+  color: var(--dm-accent-pink) !important;
+  filter: drop-shadow(0 0 10px var(--dm-accent-pink));
+}
+
+html.dark-mode .sidebar .nav-link {
+  color: var(--dm-text-secondary) !important;
+  border-radius: 0.75rem;
+  margin: 0.25rem 0.75rem;
+  padding: 0.75rem 1rem !important;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+html.dark-mode .sidebar .nav-link::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 0;
+  background: linear-gradient(180deg, var(--dm-accent-blue), var(--dm-accent-purple));
+  border-radius: 0 3px 3px 0;
+  transition: height 0.3s ease;
 }
 
 html.dark-mode .sidebar .nav-item.active .nav-link,
 html.dark-mode .sidebar .nav-link:hover {
-  background-color: rgba(235, 219, 178, 0.06);
+  background: linear-gradient(90deg, rgba(59, 130, 246, 0.15) 0%, transparent 100%) !important;
+  color: var(--dm-text-primary) !important;
+}
+
+html.dark-mode .sidebar .nav-item.active .nav-link::before,
+html.dark-mode .sidebar .nav-link:hover::before {
+  height: 60%;
+}
+
+html.dark-mode .sidebar .nav-link i {
+  transition: all 0.3s ease;
+}
+
+html.dark-mode .sidebar .nav-link:hover i {
+  transform: scale(1.15);
+  color: var(--dm-accent-blue);
+}
+
+html.dark-mode .sidebar-heading {
+  color: var(--dm-text-muted) !important;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
 }
 
 html.dark-mode .sidebar-divider {
-  border-top-color: rgba(235, 219, 178, 0.12);
+  border-top: 1px solid var(--dm-border);
+  margin: 1rem 1.5rem;
 }
 
-/* Cards & containers */
-html.dark-mode .card,
-html.dark-mode .card-body,
-html.dark-mode .card-header {
-  background-color: #32302f;
-  color: #ebdbb2;
+html.dark-mode #sidebarToggle,
+html.dark-mode #sidebarToggleTop {
+  background: var(--dm-bg-tertiary);
+  border: 1px solid var(--dm-border);
+  color: var(--dm-text-secondary);
 }
 
+html.dark-mode #sidebarToggle:hover,
+html.dark-mode #sidebarToggleTop:hover {
+  background: var(--dm-accent-blue);
+  color: white;
+}
+
+/* ============================================
+   CARDS - Glass Morphism
+   ============================================ */
 html.dark-mode .card {
-  border-color: #504945;
+  background: var(--dm-bg-card);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--dm-border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  color: var(--dm-text-primary);
+}
+
+html.dark-mode .card:hover {
+  border-color: rgba(59, 130, 246, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 40px var(--dm-glow-blue);
+}
+
+html.dark-mode .card-body {
+  background: transparent;
+  color: var(--dm-text-primary);
 }
 
 html.dark-mode .card-header {
-  border-bottom-color: #504945;
+  background: linear-gradient(90deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+  border-bottom: 1px solid var(--dm-border);
+  color: var(--dm-text-primary);
 }
 
+html.dark-mode .card-header.bg-gradient-primary,
+html.dark-mode .card-header.bg-gradient-success,
+html.dark-mode .card-header.bg-gradient-info,
+html.dark-mode .card-header.bg-gradient-warning,
+html.dark-mode .card-header.bg-gradient-danger {
+  background: linear-gradient(135deg, var(--dm-accent-blue), var(--dm-accent-purple)) !important;
+}
+
+html.dark-mode .card-header.bg-gradient-success {
+  background: linear-gradient(135deg, var(--dm-accent-green), var(--dm-accent-cyan)) !important;
+}
+
+/* Dashboard stat cards */
+html.dark-mode .card.border-left-primary {
+  border-left-color: var(--dm-accent-blue) !important;
+}
+
+html.dark-mode .card.border-left-success {
+  border-left-color: var(--dm-accent-green) !important;
+}
+
+html.dark-mode .card.border-left-info {
+  border-left-color: var(--dm-accent-cyan) !important;
+}
+
+html.dark-mode .card.border-left-warning {
+  border-left-color: var(--dm-accent-yellow) !important;
+}
+
+html.dark-mode .card.border-left-danger {
+  border-left-color: var(--dm-accent-red) !important;
+}
+
+html.dark-mode a.card:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 60px var(--dm-glow-blue);
+}
+
+/* Remove heavy shadows in dark mode */
 html.dark-mode .shadow,
-html.dark-mode .shadow-sm {
-  box-shadow: none !important;
+html.dark-mode .shadow-sm,
+html.dark-mode .shadow-lg {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
 }
 
-/* Tables & list groups */
+/* ============================================
+   TABLES
+   ============================================ */
 html.dark-mode .table {
-  color: #ebdbb2;
+  color: var(--dm-text-primary);
 }
 
 html.dark-mode .table thead th {
-  border-bottom-color: #504945;
+  background: var(--dm-bg-tertiary);
+  border-bottom: 2px solid var(--dm-border);
+  color: var(--dm-text-primary);
+  font-weight: 600;
 }
 
 html.dark-mode .table td,
 html.dark-mode .table th {
-  border-top-color: #504945;
+  border-top-color: var(--dm-border);
 }
 
+html.dark-mode .table tbody tr:hover {
+  background: rgba(59, 130, 246, 0.08);
+}
+
+html.dark-mode .table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* ============================================
+   LIST GROUPS
+   ============================================ */
 html.dark-mode .list-group-item {
-  background-color: #32302f;
-  color: #ebdbb2;
-  border-color: #504945;
+  background: var(--dm-bg-glass);
+  color: var(--dm-text-primary);
+  border: 1px solid var(--dm-border);
+  backdrop-filter: blur(5px);
 }
 
-/* Forms */
+html.dark-mode .list-group-item:hover {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+html.dark-mode .list-group-flush .list-group-item {
+  border-left: 0;
+  border-right: 0;
+  border-radius: 0;
+}
+
+/* ============================================
+   FORMS
+   ============================================ */
 html.dark-mode .form-control,
 html.dark-mode .custom-select,
 html.dark-mode .input-group-text {
-  background-color: #3c3836;
-  color: #ebdbb2;
-  border-color: #504945;
+  background: var(--dm-bg-tertiary);
+  color: var(--dm-text-primary);
+  border: 1px solid var(--dm-border);
+  transition: all 0.3s ease;
 }
 
 html.dark-mode .form-control::placeholder {
-  color: #a89984;
+  color: var(--dm-text-muted);
 }
 
 html.dark-mode .form-control:focus {
-  background-color: #3c3836;
-  color: #ebdbb2;
-  border-color: #458588;
-  box-shadow: 0 0 0 0.2rem rgba(69, 133, 136, 0.25);
+  background: var(--dm-bg-secondary);
+  color: var(--dm-text-primary);
+  border-color: var(--dm-accent-blue);
+  box-shadow: 0 0 0 3px var(--dm-glow-blue), 0 0 20px var(--dm-glow-blue);
 }
 
-html.dark-mode label,
-html.dark-mode .small {
-  color: #d5c4a1;
+html.dark-mode .form-control-user {
+  border-radius: 2rem;
 }
 
-/* Links */
+html.dark-mode label {
+  color: var(--dm-text-secondary);
+  font-weight: 500;
+}
+
+html.dark-mode .small,
+html.dark-mode small {
+  color: var(--dm-text-muted);
+}
+
+html.dark-mode .text-muted {
+  color: var(--dm-text-muted) !important;
+}
+
+/* Custom checkboxes and radios */
+html.dark-mode .custom-control-label::before {
+  background-color: var(--dm-bg-tertiary);
+  border-color: var(--dm-border);
+}
+
+html.dark-mode .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: var(--dm-accent-blue);
+  border-color: var(--dm-accent-blue);
+}
+
+/* ============================================
+   TYPOGRAPHY & LINKS
+   ============================================ */
+html.dark-mode h1, html.dark-mode h2, html.dark-mode h3, 
+html.dark-mode h4, html.dark-mode h5, html.dark-mode h6,
+html.dark-mode .h1, html.dark-mode .h2, html.dark-mode .h3,
+html.dark-mode .h4, html.dark-mode .h5, html.dark-mode .h6 {
+  color: var(--dm-text-primary);
+}
+
+html.dark-mode .text-gray-800 {
+  color: var(--dm-text-primary) !important;
+}
+
+html.dark-mode .text-gray-600 {
+  color: var(--dm-text-secondary) !important;
+}
+
+html.dark-mode .text-gray-400,
+html.dark-mode .text-gray-300 {
+  color: var(--dm-text-muted) !important;
+}
+
 html.dark-mode a {
-  color: #83a598;
+  color: var(--dm-accent-blue);
+  transition: all 0.2s ease;
 }
 
 html.dark-mode a:hover {
-  color: #8ec07c;
+  color: var(--dm-accent-cyan);
+  text-shadow: 0 0 15px var(--dm-glow-blue);
 }
 
-/* Buttons (map common Bootstrap colors to gruvbox accents) */
+html.dark-mode .text-primary {
+  color: var(--dm-accent-blue) !important;
+}
+
+html.dark-mode .text-success {
+  color: var(--dm-accent-green) !important;
+}
+
+html.dark-mode .text-info {
+  color: var(--dm-accent-cyan) !important;
+}
+
+html.dark-mode .text-warning {
+  color: var(--dm-accent-yellow) !important;
+}
+
+html.dark-mode .text-danger {
+  color: var(--dm-accent-red) !important;
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
 html.dark-mode .btn-primary {
-  background-color: #458588;
-  border-color: #458588;
+  background: linear-gradient(135deg, var(--dm-accent-blue), #2563eb);
+  border: none;
+  box-shadow: 0 4px 15px var(--dm-glow-blue);
+}
+
+html.dark-mode .btn-primary:hover {
+  background: linear-gradient(135deg, #2563eb, var(--dm-accent-purple));
+  box-shadow: 0 6px 25px var(--dm-glow-blue);
+  transform: translateY(-2px);
 }
 
 html.dark-mode .btn-success {
-  background-color: #98971a;
-  border-color: #98971a;
+  background: linear-gradient(135deg, var(--dm-accent-green), #059669);
+  border: none;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+html.dark-mode .btn-success:hover {
+  background: linear-gradient(135deg, #059669, var(--dm-accent-cyan));
+  box-shadow: 0 6px 25px rgba(16, 185, 129, 0.4);
 }
 
 html.dark-mode .btn-danger {
-  background-color: #cc241d;
-  border-color: #cc241d;
+  background: linear-gradient(135deg, var(--dm-accent-red), #dc2626);
+  border: none;
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+}
+
+html.dark-mode .btn-danger:hover {
+  background: linear-gradient(135deg, #dc2626, var(--dm-accent-pink));
+  box-shadow: 0 6px 25px rgba(239, 68, 68, 0.4);
 }
 
 html.dark-mode .btn-warning {
-  background-color: #d79921;
-  border-color: #d79921;
-  color: #282828;
+  background: linear-gradient(135deg, var(--dm-accent-yellow), #d97706);
+  border: none;
+  color: var(--dm-bg-primary);
 }
 
-html.dark-mode .btn-secondary,
-html.dark-mode .btn-outline-secondary {
-  color: #ebdbb2;
-  border-color: #665c54;
+html.dark-mode .btn-info {
+  background: linear-gradient(135deg, var(--dm-accent-cyan), #0891b2);
+  border: none;
+  box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
 }
 
 html.dark-mode .btn-secondary {
-  background-color: #504945;
+  background: var(--dm-bg-tertiary);
+  border: 1px solid var(--dm-border);
+  color: var(--dm-text-primary);
+}
+
+html.dark-mode .btn-secondary:hover {
+  background: var(--dm-accent-blue);
+  border-color: var(--dm-accent-blue);
+  color: white;
+}
+
+html.dark-mode .btn-outline-primary {
+  color: var(--dm-accent-blue);
+  border-color: var(--dm-accent-blue);
+}
+
+html.dark-mode .btn-outline-primary:hover {
+  background: var(--dm-accent-blue);
+  color: white;
+  box-shadow: 0 0 20px var(--dm-glow-blue);
+}
+
+html.dark-mode .btn-outline-secondary {
+  color: var(--dm-text-secondary);
+  border-color: var(--dm-border);
 }
 
 html.dark-mode .btn-outline-secondary:hover {
-  background-color: #504945;
-  border-color: #504945;
+  background: var(--dm-bg-tertiary);
+  border-color: var(--dm-accent-blue);
+  color: var(--dm-text-primary);
 }
 
-/* Alerts */
+html.dark-mode .btn-outline-danger {
+  color: var(--dm-accent-red);
+  border-color: var(--dm-accent-red);
+}
+
+html.dark-mode .btn-outline-danger:hover {
+  background: var(--dm-accent-red);
+  color: white;
+}
+
+html.dark-mode .btn-link {
+  color: var(--dm-accent-blue);
+}
+
+/* ============================================
+   BADGES
+   ============================================ */
+html.dark-mode .badge-primary {
+  background: linear-gradient(135deg, var(--dm-accent-blue), var(--dm-accent-purple));
+}
+
+html.dark-mode .badge-success {
+  background: linear-gradient(135deg, var(--dm-accent-green), var(--dm-accent-cyan));
+}
+
+html.dark-mode .badge-danger {
+  background: linear-gradient(135deg, var(--dm-accent-red), var(--dm-accent-pink));
+  animation: glow-pulse 2s infinite;
+}
+
+html.dark-mode .badge-warning {
+  background: linear-gradient(135deg, var(--dm-accent-yellow), #ea580c);
+  color: var(--dm-bg-primary);
+}
+
+html.dark-mode .badge-info {
+  background: linear-gradient(135deg, var(--dm-accent-cyan), var(--dm-accent-blue));
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 5px var(--dm-accent-red); }
+  50% { box-shadow: 0 0 20px var(--dm-accent-red); }
+}
+
+/* ============================================
+   ALERTS
+   ============================================ */
 html.dark-mode .alert {
-  border-color: #504945;
+  border: 1px solid var(--dm-border);
+  backdrop-filter: blur(10px);
 }
 
 html.dark-mode .alert-success {
-  background-color: rgba(152, 151, 26, 0.18);
-  color: #ebdbb2;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(6, 182, 212, 0.1));
+  border-left: 4px solid var(--dm-accent-green);
+  color: var(--dm-text-primary);
 }
 
 html.dark-mode .alert-danger {
-  background-color: rgba(204, 36, 29, 0.18);
-  color: #ebdbb2;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(236, 72, 153, 0.1));
+  border-left: 4px solid var(--dm-accent-red);
+  color: var(--dm-text-primary);
 }
 
 html.dark-mode .alert-warning {
-  background-color: rgba(215, 153, 33, 0.18);
-  color: #ebdbb2;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(234, 88, 12, 0.1));
+  border-left: 4px solid var(--dm-accent-yellow);
+  color: var(--dm-text-primary);
 }
 
 html.dark-mode .alert-info {
-  background-color: rgba(69, 133, 136, 0.18);
-  color: #ebdbb2;
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(59, 130, 246, 0.1));
+  border-left: 4px solid var(--dm-accent-cyan);
+  color: var(--dm-text-primary);
+}
+
+html.dark-mode .alert-primary {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(139, 92, 246, 0.1));
+  border-left: 4px solid var(--dm-accent-blue);
+  color: var(--dm-text-primary);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+html.dark-mode .sticky-footer,
+html.dark-mode .sticky-footer.bg-white {
+  background: var(--dm-bg-glass) !important;
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--dm-border);
+  color: var(--dm-text-muted);
+}
+
+/* ============================================
+   SCROLL TO TOP BUTTON
+   ============================================ */
+html.dark-mode .scroll-to-top {
+  background: linear-gradient(135deg, var(--dm-accent-blue), var(--dm-accent-purple));
+  box-shadow: 0 4px 20px var(--dm-glow-purple);
+}
+
+html.dark-mode .scroll-to-top:hover {
+  box-shadow: 0 6px 30px var(--dm-glow-purple);
+}
+
+/* ============================================
+   PROGRESS BARS
+   ============================================ */
+html.dark-mode .progress {
+  background-color: var(--dm-bg-tertiary);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+html.dark-mode .progress-bar {
+  background: linear-gradient(90deg, var(--dm-accent-blue), var(--dm-accent-purple));
+}
+
+/* ============================================
+   MODAL DIALOGS
+   ============================================ */
+html.dark-mode .modal-content {
+  background: var(--dm-bg-card);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--dm-border);
+  color: var(--dm-text-primary);
+}
+
+html.dark-mode .modal-header {
+  border-bottom-color: var(--dm-border);
+}
+
+html.dark-mode .modal-footer {
+  border-top-color: var(--dm-border);
+}
+
+html.dark-mode .close {
+  color: var(--dm-text-primary);
+  text-shadow: none;
+}
+
+/* ============================================
+   LOGIN/REGISTER PAGE SPECIFIC
+   ============================================ */
+html.dark-mode .bg-gradient-primary {
+  background: linear-gradient(135deg, var(--dm-bg-primary) 0%, #1a1f35 50%, var(--dm-bg-secondary) 100%) !important;
+}
+
+html.dark-mode .text-gray-900 {
+  color: var(--dm-text-primary) !important;
+}
+
+/* ============================================
+   MISCELLANEOUS
+   ============================================ */
+html.dark-mode hr {
+  border-top-color: var(--dm-border);
+}
+
+html.dark-mode .border {
+  border-color: var(--dm-border) !important;
+}
+
+html.dark-mode .bg-white {
+  background-color: var(--dm-bg-card) !important;
+}
+
+html.dark-mode .bg-light {
+  background-color: var(--dm-bg-tertiary) !important;
+}
+
+/* DataTables dark mode */
+html.dark-mode .dataTables_wrapper .dataTables_paginate .paginate_button {
+  color: var(--dm-text-primary) !important;
+  background: var(--dm-bg-tertiary);
+  border-color: var(--dm-border);
+}
+
+html.dark-mode .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background: var(--dm-accent-blue) !important;
+  color: white !important;
+}
+
+html.dark-mode .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+  background: var(--dm-accent-blue) !important;
+  color: white !important;
+}
+
+/* Font awesome icons glow effect on hover */
+html.dark-mode .nav-link:hover .fas,
+html.dark-mode .nav-link:hover .far,
+html.dark-mode .nav-link:hover .fab {
+  filter: drop-shadow(0 0 8px var(--dm-accent-blue));
+}
+
+/* Animated gradient border for focused elements */
+html.dark-mode .card:focus-within {
+  border-image: linear-gradient(135deg, var(--dm-accent-blue), var(--dm-accent-purple), var(--dm-accent-pink)) 1;
 }
 
 /* Footer */

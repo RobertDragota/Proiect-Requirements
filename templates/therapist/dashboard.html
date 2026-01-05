@@ -22,7 +22,7 @@
                 <div>{{ a.message }}</div>
               </div>
               <form method="post" action="{{ url_for('therapist.alert_resolve', alert_id=a.id) }}">
-                {{ csrf_token() }}
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <button class="btn btn-sm btn-success" type="submit">Resolve</button>
               </form>
             </li>

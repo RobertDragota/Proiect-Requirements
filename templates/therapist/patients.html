@@ -1,77 +1,67 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h1 class="h4 mb-3">My Patients</h1>
-
-  <div class="card mb-3">
-    <div class="card-header">Link a patient by email</div>
-    <div class="card-body">
-      <form method="post">
-        {{ form.csrf_token }}
-        <div class="input-group">
-          {{ form.patient_email(class_='form-control', placeholder='patient@example.com') }}
-          <button class="btn btn-primary" type="submit">Link</button>
-        </div>
-        {% for e in form.patient_email.errors %}<div class="text-danger small">{{ e }}</div>{% endfor %}
-      </form>
-    </div>
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">My Patients</h1>
+    <a class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm" href="{{ url_for('therapist.dashboard') }}">
+      <i class="fas fa-arrow-left fa-sm text-white-50"></i> Back to Dashboard
+    </a>
   </div>
 
-  {% if patients %}
-    <div class="list-group">
-      {% for p in patients %}
-        <div class="list-group-item">
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 class="h3 mb-0 text-gray-800">Patients</h1>
-          <a class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm" href="{{ url_for('therapist.dashboard') }}">
-            <i class="fas fa-arrow-left fa-sm text-white-50"></i> Back
-          </a>
+  <div class="row">
+    <div class="col-lg-5 mb-4">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-user-plus mr-2"></i>Link a Patient</h6>
         </div>
+        <div class="card-body">
+          <form method="post">
+            {{ form.csrf_token }}
+            <div class="form-group">
+              <label for="{{ form.patient_email.id }}" class="small text-muted mb-1">Patient Email Address</label>
+              {{ form.patient_email(class_='form-control', placeholder='patient@example.com') }}
+              {% for e in form.patient_email.errors %}<div class="text-danger small mt-1">{{ e }}</div>{% endfor %}
+            </div>
+            <button class="btn btn-primary" type="submit">
+              <i class="fas fa-link mr-1"></i> Link Patient
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
 
-        <div class="row">
-          <div class="col-lg-6 mb-4">
-            <div class="card shadow mb-4">
-              <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Link a patient</h6>
-              </div>
-              <div class="card-body">
-                <form method="post">
-                  {{ form.hidden_tag() }}
-                  <div class="form-group">
-                    {{ form.patient_email.label(class_='small mb-1') }}
-                    {{ form.patient_email(class_='form-control') }}
-                    {% for e in form.patient_email.errors %}<div class="text-danger small">{{ e }}</div>{% endfor %}
+    <div class="col-lg-7 mb-4">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-users mr-2"></i>Linked Patients</h6>
+        </div>
+        <div class="card-body">
+          {% if patients %}
+            <div class="list-group">
+              {% for p in patients %}
+                <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                  <div>
+                    <div class="font-weight-bold">{{ p.display_name }}</div>
+                    <div class="small text-muted">{{ p.email }}</div>
                   </div>
-                  {{ form.submit(class_='btn btn-primary') }}
-                </form>
-              </div>
+                  <div class="btn-group">
+                    <a class="btn btn-sm btn-outline-primary" href="{{ url_for('therapist.patient_journal', patient_id=p.id) }}">
+                      <i class="fas fa-book mr-1"></i>Journal
+                    </a>
+                    <a class="btn btn-sm btn-outline-info" href="{{ url_for('therapist.patient_mood', patient_id=p.id) }}">
+                      <i class="fas fa-smile mr-1"></i>Mood
+                    </a>
+                  </div>
+                </div>
+              {% endfor %}
             </div>
-          </div>
-
-          <div class="col-lg-6 mb-4">
-            <div class="card shadow mb-4">
-              <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Linked patients</h6>
-              </div>
-              <div class="card-body">
-                {% if patients %}
-                  <ul class="list-group">
-                    {% for p in patients %}
-                      <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <div>
-                          <div class="font-weight-bold">{{ p.display_name }}</div>
-                          <div class="small text-muted">{{ p.email }}</div>
-                        </div>
-                        <div>
-                          <a class="btn btn-sm btn-outline-secondary" href="{{ url_for('therapist.patient_journal', patient_id=p.id) }}">Journal</a>
-                          <a class="btn btn-sm btn-outline-secondary" href="{{ url_for('therapist.patient_mood', patient_id=p.id) }}">Mood</a>
-                        </div>
-                      </li>
-                    {% endfor %}
-                  </ul>
-                {% else %}
-                  <p class="text-muted mb-0">No linked patients yet.</p>
-                {% endif %}
-              </div>
+          {% else %}
+            <div class="text-center py-4">
+              <i class="fas fa-user-friends fa-3x text-gray-300 mb-3"></i>
+              <p class="text-muted mb-0">No linked patients yet. Use the form to link a patient by their email.</p>
             </div>
-          </div>
+          {% endif %}
         </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

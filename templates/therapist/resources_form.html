@@ -1,24 +1,41 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h1 class="h4 mb-3">{{ title }}</h1>
-  <form method="post">
-    {{ form.csrf_token }}
-    <div class="mb-3">
-      <label class="form-label">{{ form.title.label.text }}</label>
-      {{ form.title(class_='form-control') }}
-      {% for e in form.title.errors %}<div class="text-danger small">{{ e }}</div>{% endfor %}
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">{{ title }}</h1>
+    <a class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm" href="{{ url_for('therapist.resources_list') }}">
+      <i class="fas fa-arrow-left fa-sm text-white-50"></i> Back
+    </a>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-folder-plus mr-2"></i>Resource Details</h6>
+        </div>
+        <div class="card-body">
+          <form method="post">
+            {{ form.csrf_token }}
+            <div class="form-group">
+              <label for="{{ form.title.id }}">{{ form.title.label.text }}</label>
+              {{ form.title(class_='form-control', placeholder='e.g., Mindfulness Guide') }}
+              {% for e in form.title.errors %}<div class="text-danger small">{{ e }}</div>{% endfor %}
+            </div>
+            <div class="form-group">
+              <label for="{{ form.url.id }}">{{ form.url.label.text }}</label>
+              {{ form.url(class_='form-control', placeholder='https://example.com/resource') }}
+              {% for e in form.url.errors %}<div class="text-danger small">{{ e }}</div>{% endfor %}
+            </div>
+            <div class="form-group">
+              <label for="{{ form.description.id }}">{{ form.description.label.text }}</label>
+              {{ form.description(class_='form-control', placeholder='Brief description for patients...') }}
+              {% for e in form.description.errors %}<div class="text-danger small">{{ e }}</div>{% endfor %}
+            </div>
+            <button class="btn btn-primary" type="submit"><i class="fas fa-save mr-1"></i>Save</button>
+            <a class="btn btn-link" href="{{ url_for('therapist.resources_list') }}">Cancel</a>
+          </form>
+        </div>
+      </div>
     </div>
-    <div class="mb-3">
-      <label class="form-label">{{ form.url.label.text }}</label>
-      {{ form.url(class_='form-control') }}
-      {% for e in form.url.errors %}<div class="text-danger small">{{ e }}</div>{% endfor %}
-    </div>
-    <div class="mb-3">
-      <label class="form-label">{{ form.description.label.text }}</label>
-      {{ form.description(class_='form-control') }}
-      {% for e in form.description.errors %}<div class="text-danger small">{{ e }}</div>{% endfor %}
-    </div>
-    <button class="btn btn-primary" type="submit">Save</button>
-    <a class="btn btn-link" href="{{ url_for('therapist.resources_list') }}">Cancel</a>
-  </form>
+  </div>
 {% endblock %}

@@ -1,33 +1,51 @@
 {% extends 'base.html' %}
 {% block content %}
-  <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">PSYCare România (Web MVP)</h1>
+  <div class="text-center mb-5">
+    <h1 class="h2 mb-3 text-gray-800"><i class="fas fa-heart text-primary mr-2"></i>PSYCare România</h1>
+    <p class="lead text-muted">Your digital companion for mental health and wellbeing</p>
   </div>
 
-  <div class="row">
-    <div class="col-lg-6 mb-4">
-      <div class="card shadow mb-4">
-        <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">Patient</h6>
+  <div class="row justify-content-center">
+    <div class="col-lg-5 mb-4">
+      <div class="card shadow h-100">
+        <div class="card-header py-3 bg-gradient-primary text-white">
+          <h6 class="m-0 font-weight-bold"><i class="fas fa-user mr-2"></i>For Patients</h6>
         </div>
-        <div class="card-body">
-          Register as a patient, write journal entries, log daily mood, and access resources.
-          <div class="mt-3">
-            <a class="btn btn-primary" href="{{ url_for('auth.register') }}">Register</a>
-            <a class="btn btn-outline-primary" href="{{ url_for('auth.login') }}">Login</a>
+        <div class="card-body d-flex flex-column">
+          <ul class="list-unstyled mb-4">
+            <li class="mb-2"><i class="fas fa-check-circle text-success mr-2"></i>Write private journal entries</li>
+            <li class="mb-2"><i class="fas fa-check-circle text-success mr-2"></i>Track your daily mood</li>
+            <li class="mb-2"><i class="fas fa-check-circle text-success mr-2"></i>Access therapist resources</li>
+            <li class="mb-2"><i class="fas fa-check-circle text-success mr-2"></i>Crisis support button</li>
+          </ul>
+          <div class="mt-auto">
+            <a class="btn btn-primary btn-block mb-2" href="{{ url_for('auth.register') }}">
+              <i class="fas fa-user-plus mr-1"></i>Create Account
+            </a>
+            <a class="btn btn-outline-primary btn-block" href="{{ url_for('auth.login') }}">
+              <i class="fas fa-sign-in-alt mr-1"></i>Login
+            </a>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-lg-6 mb-4">
-      <div class="card shadow mb-4">
-        <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">Therapist</h6>
+    <div class="col-lg-5 mb-4">
+      <div class="card shadow h-100">
+        <div class="card-header py-3 bg-gradient-success text-white">
+          <h6 class="m-0 font-weight-bold"><i class="fas fa-user-md mr-2"></i>For Therapists</h6>
         </div>
-        <div class="card-body">
-          Therapist accounts are created manually for this MVP (see README), then you can link patients and review shared data.
-          <div class="mt-3">
-            <a class="btn btn-primary" href="{{ url_for('auth.login') }}">Login</a>
+        <div class="card-body d-flex flex-column">
+          <ul class="list-unstyled mb-4">
+            <li class="mb-2"><i class="fas fa-check-circle text-info mr-2"></i>Link and manage patients</li>
+            <li class="mb-2"><i class="fas fa-check-circle text-info mr-2"></i>Review shared journal entries</li>
+            <li class="mb-2"><i class="fas fa-check-circle text-info mr-2"></i>Monitor patient mood trends</li>
+            <li class="mb-2"><i class="fas fa-check-circle text-info mr-2"></i>Share educational resources</li>
+          </ul>
+          <p class="small text-muted mb-3"><i class="fas fa-info-circle mr-1"></i>Therapist accounts are created by administrators.</p>
+          <div class="mt-auto">
+            <a class="btn btn-success btn-block" href="{{ url_for('auth.login') }}">
+              <i class="fas fa-sign-in-alt mr-1"></i>Therapist Login
+            </a>
           </div>
         </div>
       </div>

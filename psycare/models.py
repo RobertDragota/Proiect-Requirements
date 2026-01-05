@@ -1,12 +1,17 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional
 
 from flask_login import UserMixin
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from .extensions import db
+
+
+def utc_now() -> datetime:
+    """Return timezone-aware UTC datetime (avoids deprecated utcnow)."""
+    return datetime.now(timezone.utc)
 
 
 class User(db.Model, UserMixin):
@@ -18,7 +23,7 @@ class User(db.Model, UserMixin):
     role: str = db.Column(db.String(32), nullable=False, default="patient")  # patient|therapist
     display_name: str = db.Column(db.String(120), nullable=False, default="")
 
-    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, nullable=False, default=utc_now)
 
     def set_password(self, password: str) -> None:
         self.password_hash = generate_password_hash(password)
@@ -33,7 +38,7 @@ class PatientTherapist(db.Model):
     id: int = db.Column(db.Integer, primary_key=True)
     patient_id: int = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False, index=True)
     therapist_id: int = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False, index=True)
-    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, nullable=False, default=utc_now)
 
     __table_args__ = (
         db.UniqueConstraint("patient_id", "therapist_id", name="uq_patient_therapist"),
@@ -51,8 +56,8 @@ class JournalEntry(db.Model):
     shared_with_therapist: bool = db.Column(db.Boolean, nullable=False, default=True)
     flagged_risk: bool = db.Column(db.Boolean, nullable=False, default=False)
 
-    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow, onupdate=datetime.utcnow)
+    created_at = db.Column(db.DateTime, nullable=False, default=utc_now)
+    updated_at = db.Column(db.DateTime, nullable=False, default=utc_now, onupdate=utc_now)
 
 
 class MoodEntry(db.Model):
@@ -64,7 +69,7 @@ class MoodEntry(db.Model):
     rating: int = db.Column(db.Integer, nullable=False)  # 1..10
     note: str = db.Column(db.String(500), nullable=False, default="")
 
-    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, nullable=False, default=utc_now)
 
 
 class Alert(db.Model):
@@ -78,7 +83,7 @@ class Alert(db.Model):
     message: str = db.Column(db.String(500), nullable=False, default="")
     resolved: bool = db.Column(db.Boolean, nullable=False, default=False)
 
-    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, nullable=False, default=utc_now)
 
 
 class Resource(db.Model):
@@ -91,4 +96,4 @@ class Resource(db.Model):
     url: str = db.Column(db.String(500), nullable=False)
     description: str = db.Column(db.String(500), nullable=False, default="")
 
-    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, nullable=False, default=utc_now)

@@ -1,46 +1,893 @@
-/* Playful/modern tweaks while staying within SB Admin 2 styling.
-   No new colors, no new font families, no custom shadows. */
+/* Modern UI Enhancement for PSYCare
+   Enhanced interactivity, visual polish, and contemporary design patterns
+*/
 
-/* Slightly larger, cleaner base typography */
+/* ============================================
+   CSS CUSTOM PROPERTIES
+   ============================================ */
+:root {
+  --pc-primary: #4e73df;
+  --pc-primary-light: #6b8cef;
+  --pc-primary-dark: #3a5bc7;
+  --pc-success: #1cc88a;
+  --pc-danger: #e74a3b;
+  --pc-warning: #f6c23e;
+  --pc-info: #36b9cc;
+  --pc-gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --pc-gradient-success: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  --pc-gradient-danger: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+  --pc-gradient-info: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --pc-shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.08);
+  --pc-shadow-hover: 0 20px 60px rgba(0, 0, 0, 0.12);
+  --pc-shadow-glow: 0 0 40px rgba(78, 115, 223, 0.15);
+  --pc-radius-sm: 0.5rem;
+  --pc-radius-md: 0.875rem;
+  --pc-radius-lg: 1.25rem;
+  --pc-radius-xl: 1.75rem;
+  --pc-transition-fast: 0.15s ease;
+  --pc-transition-normal: 0.25s ease;
+  --pc-transition-slow: 0.4s ease;
+}
+
+/* ============================================
+   BASE TYPOGRAPHY & SMOOTHING
+   ============================================ */
 body {
   font-size: 0.95rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  letter-spacing: 0.01em;
 }
 
-/* Softer, more modern shapes */
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* ============================================
+   TRANSITIONS - Global smooth transitions
+   ============================================ */
 .card,
-.dropdown-menu,
-.alert {
-  border-radius: 0.9rem;
-}
-
 .btn,
+.alert,
+.list-group-item,
+.nav-link,
+.dropdown-menu,
 .form-control,
-.input-group-text,
-.custom-select,
-.list-group-item {
-  border-radius: 0.75rem;
+.custom-control-label::before,
+.badge,
+.table tbody tr,
+a,
+input,
+textarea,
+select {
+  transition: all var(--pc-transition-normal);
 }
 
-/* Make primary actions feel a bit more "app-like" */
-.btn {
+/* ============================================
+   CARDS - Modern glassmorphism with depth
+   ============================================ */
+.card {
+  border-radius: var(--pc-radius-lg);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  box-shadow: var(--pc-shadow-soft);
+  background: #fff;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--pc-shadow-hover), var(--pc-shadow-glow);
+}
+
+/* Clickable cards (dashboard stat cards) */
+a.card {
+  cursor: pointer;
+  text-decoration: none !important;
+}
+
+a.card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.15), var(--pc-shadow-glow);
+}
+
+a.card:active {
+  transform: translateY(-2px) scale(0.99);
+}
+
+.card-header {
+  border-top-left-radius: var(--pc-radius-lg) !important;
+  border-top-right-radius: var(--pc-radius-lg) !important;
+  background: linear-gradient(180deg, rgba(78, 115, 223, 0.03) 0%, transparent 100%);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  padding: 1rem 1.25rem;
   font-weight: 600;
 }
 
-/* Reduce visual clutter on cards */
-.card-header {
-  border-top-left-radius: 0.9rem;
-  border-top-right-radius: 0.9rem;
+.card-body {
+  padding: 1.5rem;
 }
 
-/* Sidebar brand slightly bolder */
-.sidebar .sidebar-brand-text {
+/* Card stat indicators with gradient borders */
+.card.border-left-primary {
+  border-left: 4px solid transparent !important;
+  border-image: var(--pc-gradient-primary) 1;
+  border-image-slice: 1;
+}
+
+.card.border-left-success {
+  border-left: 4px solid transparent !important;
+  border-image: var(--pc-gradient-success) 1;
+  border-image-slice: 1;
+}
+
+.card.border-left-danger {
+  border-left: 4px solid transparent !important;
+  border-image: var(--pc-gradient-danger) 1;
+  border-image-slice: 1;
+}
+
+.card.border-left-info {
+  border-left: 4px solid transparent !important;
+  border-image: var(--pc-gradient-info) 1;
+  border-image-slice: 1;
+}
+
+/* Gradient headers */
+.card-header.bg-gradient-primary {
+  background: var(--pc-gradient-primary) !important;
+}
+
+.card-header.bg-gradient-success {
+  background: var(--pc-gradient-success) !important;
+}
+
+/* ============================================
+   BUTTONS - Modern with depth and interaction
+   ============================================ */
+.btn {
+  font-weight: 600;
+  border-radius: var(--pc-radius-md);
+  position: relative;
+  overflow: hidden;
+  padding: 0.5rem 1.25rem;
   letter-spacing: 0.02em;
 }
 
-/* Tables/list rows look cleaner */
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+  background: var(--pc-gradient-primary);
+  border: none;
+}
+
+.btn-primary:hover {
+  background: var(--pc-gradient-primary);
+  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+}
+
+.btn-success {
+  background: var(--pc-gradient-success);
+  border: none;
+}
+
+.btn-success:hover {
+  box-shadow: 0 8px 30px rgba(17, 153, 142, 0.4);
+}
+
+.btn-danger {
+  background: var(--pc-gradient-danger);
+  border: none;
+}
+
+.btn-danger:hover {
+  box-shadow: 0 8px 30px rgba(235, 51, 73, 0.4);
+}
+
+.btn-info {
+  background: var(--pc-gradient-info);
+  border: none;
+}
+
+.btn-info:hover {
+  box-shadow: 0 8px 30px rgba(79, 172, 254, 0.4);
+}
+
+.btn-outline-primary,
+.btn-outline-secondary,
+.btn-outline-danger,
+.btn-outline-info {
+  background: transparent;
+  border-width: 2px;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-secondary:hover {
+  transform: translateY(-2px);
+}
+
+/* Icon split buttons */
+.btn-icon-split {
+  border-radius: var(--pc-radius-md);
+}
+
+.btn-icon-split .icon {
+  border-radius: var(--pc-radius-md) 0 0 var(--pc-radius-md);
+}
+
+/* Button sizes */
+.btn-sm {
+  padding: 0.35rem 0.85rem;
+  font-size: 0.85rem;
+  border-radius: var(--pc-radius-sm);
+}
+
+.btn-lg {
+  padding: 0.75rem 1.75rem;
+  font-size: 1.1rem;
+  border-radius: var(--pc-radius-lg);
+}
+
+.btn-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+/* ============================================
+   FORMS - Refined inputs with focus states
+   ============================================ */
+.form-control,
+.custom-select {
+  border-radius: var(--pc-radius-md);
+  border: 2px solid #e3e6f0;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  background: #fafbfc;
+}
+
+.form-control:focus,
+.custom-select:focus {
+  border-color: var(--pc-primary);
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(78, 115, 223, 0.1), 0 4px 20px rgba(78, 115, 223, 0.1);
+}
+
+.form-control-user {
+  border-radius: 3rem;
+  padding: 1rem 1.5rem;
+}
+
+.input-group-text {
+  border-radius: var(--pc-radius-md);
+  background: #f8f9fc;
+  border: 2px solid #e3e6f0;
+  border-right: none;
+}
+
+/* Floating labels effect */
+.form-group {
+  position: relative;
+}
+
+.form-group label {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #6e707e;
+  margin-bottom: 0.5rem;
+}
+
+/* Custom checkboxes */
+.custom-control-input:checked ~ .custom-control-label::before {
+  animation: checkPop 0.25s ease;
+  background: var(--pc-gradient-primary);
+  border-color: transparent;
+}
+
+.custom-control-label::before {
+  border-radius: var(--pc-radius-sm);
+  border: 2px solid #d1d3e2;
+}
+
+@keyframes checkPop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+
+/* ============================================
+   ALERTS - Softer, more modern look
+   ============================================ */
+.alert {
+  border-radius: var(--pc-radius-lg);
+  border: none;
+  padding: 1rem 1.25rem;
+  animation: slideIn 0.4s ease;
+  border-left: 4px solid;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.alert-success {
+  background: linear-gradient(135deg, rgba(28, 200, 138, 0.1), rgba(56, 239, 125, 0.05));
+  border-left-color: var(--pc-success);
+}
+
+.alert-danger {
+  background: linear-gradient(135deg, rgba(231, 74, 59, 0.1), rgba(244, 92, 67, 0.05));
+  border-left-color: var(--pc-danger);
+}
+
+.alert-warning {
+  background: linear-gradient(135deg, rgba(246, 194, 62, 0.15), rgba(255, 193, 7, 0.08));
+  border-left-color: var(--pc-warning);
+}
+
+.alert-info {
+  background: linear-gradient(135deg, rgba(54, 185, 204, 0.1), rgba(0, 242, 254, 0.05));
+  border-left-color: var(--pc-info);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   LIST GROUPS - Interactive items
+   ============================================ */
+.list-group-item {
+  border-radius: var(--pc-radius-md) !important;
+  margin-bottom: 0.625rem;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  padding: 1rem 1.25rem;
+  background: #fafbfc;
+}
+
+.list-group-item:last-child {
+  margin-bottom: 0;
+}
+
+.list-group-item-action:hover {
+  background: linear-gradient(135deg, rgba(78, 115, 223, 0.05), rgba(118, 75, 162, 0.03));
+  border-color: rgba(78, 115, 223, 0.2);
+  transform: translateX(6px);
+  box-shadow: 0 4px 15px rgba(78, 115, 223, 0.1);
+}
+
+.list-group-item-action:active {
+  transform: translateX(3px);
+}
+
+.list-group-flush .list-group-item {
+  border-radius: 0 !important;
+  margin-bottom: 0;
+  border-left: none;
+  border-right: none;
+}
+
+/* ============================================
+   BADGES - Pill shapes with subtle animation
+   ============================================ */
+.badge {
+  border-radius: 2rem;
+  font-weight: 700;
+  padding: 0.45em 0.85em;
+  font-size: 0.7rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.badge-primary {
+  background: var(--pc-gradient-primary);
+}
+
+.badge-success {
+  background: var(--pc-gradient-success);
+}
+
+.badge-danger {
+  background: var(--pc-gradient-danger);
+  animation: urgentPulse 2s infinite;
+}
+
+.badge-info {
+  background: var(--pc-gradient-info);
+}
+
+@keyframes urgentPulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(231, 74, 59, 0.4); }
+  50% { opacity: 0.9; box-shadow: 0 0 0 8px rgba(231, 74, 59, 0); }
+}
+
+/* ============================================
+   TABLES - Cleaner, more readable
+   ============================================ */
+.table {
+  border-radius: var(--pc-radius-md);
+  overflow: hidden;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.table thead th {
+  background: linear-gradient(180deg, #f8f9fc 0%, #f1f3f8 100%);
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #5a5c69;
+  padding: 1rem;
+  border-bottom: 2px solid #e3e6f0;
+}
+
 .table td,
 .table th {
   vertical-align: middle;
+  padding: 1rem;
+}
+
+.table tbody tr {
+  transition: all var(--pc-transition-fast);
+}
+
+.table tbody tr:hover {
+  background: linear-gradient(90deg, rgba(78, 115, 223, 0.04), transparent);
+}
+
+/* ============================================
+   DROPDOWN MENUS - Refined appearance
+   ============================================ */
+.dropdown-menu {
+  border-radius: var(--pc-radius-lg);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
+  animation: dropIn 0.25s ease;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+@keyframes dropIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.dropdown-item {
+  border-radius: var(--pc-radius-sm);
+  margin: 0.15rem 0;
+  padding: 0.6rem 1rem;
+  font-weight: 500;
+  transition: all var(--pc-transition-fast);
+}
+
+.dropdown-item:hover {
+  background: linear-gradient(135deg, rgba(78, 115, 223, 0.1), rgba(118, 75, 162, 0.05));
+  transform: translateX(4px);
+}
+
+.dropdown-divider {
+  margin: 0.5rem 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* ============================================
+   SIDEBAR - Enhanced brand and navigation
+   ============================================ */
+.sidebar {
+  box-shadow: 4px 0 25px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar .sidebar-brand {
+  padding: 1.5rem 1rem;
+}
+
+.sidebar .sidebar-brand-text {
+  letter-spacing: 0.04em;
+  font-weight: 800;
+}
+
+.sidebar .sidebar-brand-icon {
+  transition: all var(--pc-transition-normal);
+}
+
+.sidebar .nav-item .nav-link {
+  border-radius: var(--pc-radius-md);
+  margin: 0.25rem 0.75rem;
+  padding: 0.85rem 1rem;
+  transition: all var(--pc-transition-normal);
+  position: relative;
+}
+
+.sidebar .nav-item .nav-link::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 0;
+  background: linear-gradient(180deg, #fff, rgba(255, 255, 255, 0.6));
+  border-radius: 3px;
+  transition: height var(--pc-transition-normal);
+}
+
+.sidebar .nav-item .nav-link:hover::after {
+  height: 50%;
+}
+
+.sidebar .nav-item .nav-link:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateX(4px);
+}
+
+.sidebar .nav-item .nav-link i {
+  transition: all var(--pc-transition-normal);
+  width: 1.5rem;
+}
+
+.sidebar .nav-item .nav-link:hover i {
+  transform: scale(1.15);
+}
+
+.sidebar-heading {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  padding: 0 1rem;
+}
+
+/* Sidebar brand icon rotation on hover */
+.sidebar-brand:hover .rotate-n-15 {
+  animation: heartbeat 0.6s ease;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: rotate(-15deg) scale(1); }
+  25% { transform: rotate(-15deg) scale(1.2); }
+  50% { transform: rotate(-15deg) scale(1.1); }
+  75% { transform: rotate(-15deg) scale(1.25); }
+}
+
+/* ============================================
+   TOPBAR - Subtle improvements
+   ============================================ */
+.topbar {
+  height: 4.5rem;
+}
+
+.topbar .nav-item .nav-link {
+  padding: 0 1rem;
+  position: relative;
+}
+
+.topbar .nav-item .nav-link:hover {
+  color: var(--pc-primary) !important;
+}
+
+.topbar .nav-item .nav-link:hover i {
+  transform: scale(1.1);
+}
+
+#themeToggle {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all var(--pc-transition-normal);
+}
+
+#themeToggle:hover {
+  background: rgba(78, 115, 223, 0.1);
+}
+
+#themeToggle:hover i {
+  transform: rotate(30deg) scale(1.1);
+}
+
+/* ============================================
+   SCROLL TO TOP - Better visibility
+   ============================================ */
+.scroll-to-top {
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--pc-gradient-primary);
+  box-shadow: 0 4px 20px rgba(78, 115, 223, 0.4);
+  transition: all var(--pc-transition-normal);
+}
+
+.scroll-to-top:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(78, 115, 223, 0.5);
+}
+
+/* ============================================
+   PAGE LOAD ANIMATION
+   ============================================ */
+#content-wrapper {
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(10px);
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0);
+  }
+}
+
+/* Staggered animation for cards */
+.row > [class*="col-"]:nth-child(1) .card { animation-delay: 0.05s; }
+.row > [class*="col-"]:nth-child(2) .card { animation-delay: 0.1s; }
+.row > [class*="col-"]:nth-child(3) .card { animation-delay: 0.15s; }
+.row > [class*="col-"]:nth-child(4) .card { animation-delay: 0.2s; }
+
+.card {
+  animation: cardFadeIn 0.5s ease backwards;
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   SPECIAL ELEMENTS - Crisis & Dashboard cards
+   ============================================ */
+
+/* Panic button pulse effect */
+.btn-danger.btn-icon-split {
+  animation: dangerPulse 2s infinite;
+}
+
+.btn-danger.btn-icon-split:hover {
+  animation: none;
+  transform: scale(1.03);
+}
+
+@keyframes dangerPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(231, 74, 59, 0.5); }
+  50% { box-shadow: 0 0 0 15px rgba(231, 74, 59, 0); }
+}
+
+/* Dashboard stat cards - animated border */
+.card[class*="border-left-"]:hover {
+  border-left-width: 5px !important;
+}
+
+/* Empty state styling */
+.text-center .fa-3x {
+  opacity: 0.4;
+  transition: all var(--pc-transition-normal);
+}
+
+.card:hover .text-center .fa-3x {
+  opacity: 0.7;
+  transform: scale(1.15);
+}
+
+/* ============================================
+   MOOD RATING - Visual feedback
+   ============================================ */
+input[type="number"] {
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+  opacity: 1;
+  height: 2.5rem;
+}
+
+/* ============================================
+   FOOTER - Subtle styling
+   ============================================ */
+.sticky-footer {
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.03);
+  padding: 1.5rem 0;
+}
+
+.sticky-footer .copyright {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #858796;
+}
+
+/* ============================================
+   PAGE HEADINGS
+   ============================================ */
+.d-sm-flex h1,
+.d-sm-flex .h1,
+.d-sm-flex .h3 {
+  position: relative;
+}
+
+.d-sm-flex h1::after,
+.d-sm-flex .h3::after {
+  content: '';
+  display: block;
+  width: 3rem;
+  height: 4px;
+  background: var(--pc-gradient-primary);
+  border-radius: 2px;
+  margin-top: 0.5rem;
+}
+
+/* ============================================
+   FEATURE ICONS
+   ============================================ */
+.fa-2x.text-gray-300 {
+  opacity: 0.5;
+  transition: all var(--pc-transition-normal);
+}
+
+.card:hover .fa-2x.text-gray-300 {
+  opacity: 0.8;
+  transform: scale(1.1);
+}
+
+/* ============================================
+   USER DROPDOWN
+   ============================================ */
+.user-avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--pc-gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+}
+
+/* ============================================
+   RESPONSIVE TOUCH IMPROVEMENTS
+   ============================================ */
+@media (max-width: 768px) {
+  .btn:hover,
+  .card:hover,
+  .list-group-item-action:hover {
+    transform: none;
+  }
+  
+  .btn:active {
+    transform: scale(0.97);
+  }
+  
+  .card:active {
+    transform: scale(0.99);
+  }
+  
+  .d-sm-flex h1::after,
+  .d-sm-flex .h3::after {
+    width: 2rem;
+    height: 3px;
+  }
+  
+  .card-body {
+    padding: 1.25rem;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY IMPROVEMENTS
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus visible for keyboard navigation */
+.btn:focus-visible,
+.form-control:focus-visible,
+.nav-link:focus-visible,
+a:focus-visible {
+  outline: 3px solid rgba(78, 115, 223, 0.5);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   LOGIN/REGISTER PAGE ENHANCEMENTS
+   ============================================ */
+.bg-login-image {
+  background: var(--pc-gradient-primary);
+  position: relative;
+}
+
+.bg-login-image::after {
+  content: '❤️';
+  position: absolute;
+  font-size: 4rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.3;
+}
+
+.btn-user {
+  font-size: 0.9rem;
+  border-radius: 3rem;
+  padding: 1rem 1.5rem;
+}
+
+/* ============================================
+   LOADING STATES
+   ============================================ */
+.btn.loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.btn.loading::after {
+  content: '';
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  margin-left: 0.5rem;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
