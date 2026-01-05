@@ -1,0 +1,15 @@
+/* Minimal dark mode for SB Admin 2 without changing theme tokens.
+   Uses a global filter approach to avoid hard-coding new palettes. */
+
+html.dark-mode {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* Undo the inversion for media so images/videos look normal. */
+html.dark-mode img,
+html.dark-mode video,
+html.dark-mode iframe,
+html.dark-mode canvas,
+html.dark-mode svg {
+  filter: invert(1) hue-rotate(180deg);
+}

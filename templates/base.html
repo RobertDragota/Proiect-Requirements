@@ -12,6 +12,20 @@
         rel="stylesheet">
 
     <link href="{{ url_for('static', filename='css/sb-admin-2.min.css') }}" rel="stylesheet">
+        <link href="{{ url_for('static', filename='css/dark-mode.css') }}" rel="stylesheet">
+
+        <script>
+            (function () {
+                try {
+                    var theme = localStorage.getItem('psycare-theme');
+                    if (theme === 'dark') {
+                        document.documentElement.classList.add('dark-mode');
+                    }
+                } catch (e) {
+                    // ignore
+                }
+            })();
+        </script>
 </head>
 
 <body id="page-top">
@@ -75,6 +89,11 @@
                     </button>
 
                     <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="themeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">
+                                <i id="themeToggleIcon" class="fas fa-moon"></i>
+                            </a>
+                        </li>
                         {% if current_user.is_authenticated %}
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -126,6 +145,53 @@
     <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/sb-admin-2.min.js') }}"></script>
+
+        <script>
+            (function () {
+                var key = 'psycare-theme';
+                var toggle = document.getElementById('themeToggle');
+                var icon = document.getElementById('themeToggleIcon');
+
+                function getTheme() {
+                    try {
+                        return localStorage.getItem(key) || 'light';
+                    } catch (e) {
+                        return 'light';
+                    }
+                }
+
+                function setTheme(theme) {
+                    if (theme === 'dark') {
+                        document.documentElement.classList.add('dark-mode');
+                    } else {
+                        document.documentElement.classList.remove('dark-mode');
+                    }
+
+                    if (icon) {
+                        icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+                    }
+                }
+
+                function persist(theme) {
+                    try {
+                        localStorage.setItem(key, theme);
+                    } catch (e) {
+                        // ignore
+                    }
+                }
+
+                setTheme(getTheme());
+
+                if (toggle) {
+                    toggle.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        var next = getTheme() === 'dark' ? 'light' : 'dark';
+                        persist(next);
+                        setTheme(next);
+                    });
+                }
+            })();
+        </script>
 
 </body>
 </html>
