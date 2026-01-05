@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">{{ title }}</h1>
+  </div>
+
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <form method="post">
+        {{ form.csrf_token }}
+        <div class="form-group">
+          <label>{{ form.title.label.text }}</label>
+          {{ form.title(class_='form-control') }}
+          {% for e in form.title.errors %}<div class="text-danger small">{{ e }}</div>{% endfor %}
+        </div>
+        <div class="form-group">
+          <label>{{ form.body.label.text }}</label>
+          {{ form.body(class_='form-control', rows=6) }}
+          {% for e in form.body.errors %}<div class="text-danger small">{{ e }}</div>{% endfor %}
+        </div>
+
+        <div class="custom-control custom-checkbox mb-2">
+          {{ form.shared_with_therapist(class_='custom-control-input') }}
+          <label class="custom-control-label" for="{{ form.shared_with_therapist.id }}">{{ form.shared_with_therapist.label.text }}</label>
+        </div>
+        <div class="custom-control custom-checkbox mb-3">
+          {{ form.flagged_risk(class_='custom-control-input') }}
+          <label class="custom-control-label" for="{{ form.flagged_risk.id }}">{{ form.flagged_risk.label.text }}</label>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Save</button>
+        <a class="btn btn-link" href="{{ url_for('patient.journal_list') }}">Cancel</a>
+      </form>
+    </div>
+  </div>
+{% endblock %}

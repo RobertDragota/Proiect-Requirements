@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Therapist Dashboard</h1>
+    <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="{{ url_for('therapist.patients') }}">
+      <i class="fas fa-users fa-sm text-white-50"></i> Manage patients
+    </a>
+  </div>
+
+  {% if alerts %}
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-danger">Open alerts</h6>
+      </div>
+      <div class="card-body p-0">
+        <ul class="list-group list-group-flush">
+          {% for a in alerts %}
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div>
+                <div class="font-weight-bold">{{ a.kind|capitalize }} alert</div>
+                <div class="text-muted small">{{ a.created_at.strftime('%Y-%m-%d %H:%M') }}</div>
+                <div>{{ a.message }}</div>
+              </div>
+              <form method="post" action="{{ url_for('therapist.alert_resolve', alert_id=a.id) }}">
+                {{ csrf_token() }}
+                <button class="btn btn-sm btn-success" type="submit">Resolve</button>
+              </form>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="row">
+    <div class="col-lg-4 mb-4">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Patients</h6>
+        </div>
+        <div class="card-body">
+          {% if patients %}
+            <ul class="list-group">
+              {% for p in patients %}
+                <li class="list-group-item">
+                  <div class="font-weight-bold">{{ p.display_name }}</div>
+                  <div class="small text-muted">{{ p.email }}</div>
+                  <div class="mt-2">
+                    <a class="btn btn-sm btn-outline-secondary" href="{{ url_for('therapist.patient_journal', patient_id=p.id) }}">Journal</a>
+                    <a class="btn btn-sm btn-outline-secondary" href="{{ url_for('therapist.patient_mood', patient_id=p.id) }}">Mood</a>
+                  </div>
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="text-muted mb-0">No linked patients yet.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 mb-4">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Recent shared journals</h6>
+        </div>
+        <div class="card-body">
+          {% if recent_journals %}
+            <ul class="list-group">
+              {% for j in recent_journals %}
+                <li class="list-group-item">
+                  <div class="font-weight-bold">{{ j.title }} {% if j.flagged_risk %}<span class="badge badge-danger">urgent</span>{% endif %}</div>
+                  <div class="small text-muted">Patient ID: {{ j.patient_id }} — {{ j.created_at.strftime('%Y-%m-%d %H:%M') }}</div>
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="text-muted mb-0">No shared entries yet.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 mb-4">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Recent mood check-ins</h6>
+        </div>
+        <div class="card-body">
+          {% if recent_moods %}
+            <ul class="list-group">
+              {% for m in recent_moods %}
+                <li class="list-group-item d-flex justify-content-between">
+                  <span>Patient {{ m.patient_id }}: <strong>{{ m.rating }}</strong></span>
+                  <span class="text-muted small">{{ m.created_at.strftime('%Y-%m-%d') }}</span>
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="text-muted mb-0">No mood entries yet.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

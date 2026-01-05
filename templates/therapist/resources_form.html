@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1 class="h4 mb-3">{{ title }}</h1>
+  <form method="post">
+    {{ form.csrf_token }}
+    <div class="mb-3">
+      <label class="form-label">{{ form.title.label.text }}</label>
+      {{ form.title(class_='form-control') }}
+      {% for e in form.title.errors %}<div class="text-danger small">{{ e }}</div>{% endfor %}
+    </div>
+    <div class="mb-3">
+      <label class="form-label">{{ form.url.label.text }}</label>
+      {{ form.url(class_='form-control') }}
+      {% for e in form.url.errors %}<div class="text-danger small">{{ e }}</div>{% endfor %}
+    </div>
+    <div class="mb-3">
+      <label class="form-label">{{ form.description.label.text }}</label>
+      {{ form.description(class_='form-control') }}
+      {% for e in form.description.errors %}<div class="text-danger small">{{ e }}</div>{% endfor %}
+    </div>
+    <button class="btn btn-primary" type="submit">Save</button>
+    <a class="btn btn-link" href="{{ url_for('therapist.resources_list') }}">Cancel</a>
+  </form>
+{% endblock %}

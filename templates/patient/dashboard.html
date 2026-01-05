@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Patient Dashboard</h1>
+    <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="{{ url_for('patient.journal_new') }}">
+      <i class="fas fa-plus fa-sm text-white-50"></i> New journal entry
+    </a>
+  </div>
+
+  <div class="row">
+    <div class="col-xl-3 col-md-6 mb-4">
+      <a class="card border-left-primary shadow h-100 py-2" href="{{ url_for('patient.mood_checkin') }}" style="text-decoration:none;">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Mood</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">Daily check-in</div>
+            </div>
+            <div class="col-auto"><i class="fas fa-smile fa-2x text-gray-300"></i></div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+      <a class="card border-left-success shadow h-100 py-2" href="{{ url_for('patient.journal_list') }}" style="text-decoration:none;">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Journal</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">View entries</div>
+            </div>
+            <div class="col-auto"><i class="fas fa-book fa-2x text-gray-300"></i></div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+      <a class="card border-left-info shadow h-100 py-2" href="{{ url_for('patient.resources') }}" style="text-decoration:none;">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Resources</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">Psychoeducation</div>
+            </div>
+            <div class="col-auto"><i class="fas fa-folder-open fa-2x text-gray-300"></i></div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+      <a class="card border-left-danger shadow h-100 py-2" href="{{ url_for('patient.crisis') }}" style="text-decoration:none;">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Crisis</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">Emergency help</div>
+            </div>
+            <div class="col-auto"><i class="fas fa-exclamation-triangle fa-2x text-gray-300"></i></div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6 mb-4">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Recent journal entries</h6>
+        </div>
+        <div class="card-body">
+          {% if journal_entries %}
+            <ul class="list-group">
+              {% for e in journal_entries %}
+                <li class="list-group-item">
+                  <div class="d-flex justify-content-between">
+                    <div class="font-weight-bold">{{ e.title }} {% if e.flagged_risk %}<span class="badge badge-danger">urgent</span>{% endif %}</div>
+                    <div class="text-muted small">{{ e.created_at.strftime('%Y-%m-%d') }}</div>
+                  </div>
+                  <div class="small text-muted">Shared: {{ 'Yes' if e.shared_with_therapist else 'No' }}</div>
+                </li>
+              {% endfor %}
+            </ul>
+            <div class="mt-3">
+              <a class="btn btn-sm btn-outline-primary" href="{{ url_for('patient.journal_list') }}">Open journal</a>
+            </div>
+          {% else %}
+            <p class="text-muted mb-0">No entries yet.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 mb-4">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Recent mood check-ins</h6>
+        </div>
+        <div class="card-body">
+          {% if mood_entries %}
+            <ul class="list-group">
+              {% for m in mood_entries %}
+                <li class="list-group-item d-flex justify-content-between">
+                  <span>Rating: <strong>{{ m.rating }}</strong></span>
+                  <span class="text-muted small">{{ m.created_at.strftime('%Y-%m-%d') }}</span>
+                </li>
+              {% endfor %}
+            </ul>
+            <div class="mt-3">
+              <a class="btn btn-sm btn-outline-primary" href="{{ url_for('patient.mood_checkin') }}">New check-in</a>
+            </div>
+          {% else %}
+            <p class="text-muted mb-0">No mood entries yet.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

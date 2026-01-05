@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Resources</h1>
+  </div>
+
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Psychoeducation</h6>
+    </div>
+    <div class="card-body">
+      {% if items %}
+        <div class="list-group">
+          {% for r in items %}
+            <a class="list-group-item list-group-item-action" href="{{ r.url }}" target="_blank" rel="noreferrer">
+              <div class="font-weight-bold">{{ r.title }}</div>
+              {% if r.description %}<div class="small text-muted">{{ r.description }}</div>{% endif %}
+            </a>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="text-muted mb-0">No resources yet. Ask your therapist to add some.</p>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

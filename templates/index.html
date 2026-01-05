@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">PSYCare România (Web MVP)</h1>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6 mb-4">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Patient</h6>
+        </div>
+        <div class="card-body">
+          Register as a patient, write journal entries, log daily mood, and access resources.
+          <div class="mt-3">
+            <a class="btn btn-primary" href="{{ url_for('auth.register') }}">Register</a>
+            <a class="btn btn-outline-primary" href="{{ url_for('auth.login') }}">Login</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 mb-4">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Therapist</h6>
+        </div>
+        <div class="card-body">
+          Therapist accounts are created manually for this MVP (see README), then you can link patients and review shared data.
+          <div class="mt-3">
+            <a class="btn btn-primary" href="{{ url_for('auth.login') }}">Login</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

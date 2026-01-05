@@ -1,0 +1,166 @@
+This project focuses on designing and developing a digital platform that supports psychological therapy by enhancing communication, continuity of care and administrative efficiency. In developing the system, we considered the needs of all key parties involved. The following section identifies the primary stakeholders and their roles in shaping the system’s requirements.
+
+Stakeholders Identified
+•	Primary Client (Psychologist): A licensed psychologist who initiated the project. She will use the app’s professional features. Her goals are to reduce administrative overhead, monitor patient progress between sessions, and improve patient engagement. As the domain expert, her input is crucial in defining requirements.
+•	Patients (Therapy Clients): End-users on the patient side of the app. They will use features like mood journaling, therapeutic exercises, and secure messaging. Their needs (ease of use, privacy, feeling supported between sessions) are central to the app’s success. The psychologist represents their interests based on her experience with clients.
+•	Development Team: Our team of four analysts/developers building the app. We are stakeholders in terms of feasibility and design. We used our technical perspective to brainstorm solutions and ensure the requirements are realistic and clear. (While not end-users, our input helped translate the psychologist’s vision into concrete features.)
+•	Regulatory and Professional Bodies: Indirect stakeholders that influence requirements. For example, Colegiul Psihologilor din România (Romanian Psychologists’ Board) and data protection laws (GDPR/HIPAA) set standards for confidentiality, record-keeping, and privacy. The app must comply with these legal and ethical guidelines.
+•	Peer Psychologists (Future Users): In the future, other therapists in Romania may use this platform. We kept in mind that features should be useful to them as well, not just the initial client. (For example, integration with insurance systems or bilingual support could benefit many practitioners and their patients.) These stakeholders were not directly interviewed in this phase, but the client’s experience and knowledge of similar tools guided us in considering their needs.
+Elicitation Techniques Used
+We employed three requirements elicitation techniques to gather information for the project: Document Analysis, an Interview with the Client, and a Team Brainstorming Session. Below we describe each technique, why we chose it, how we conducted it, who was involved and what requirements we identified from it.
+1. Document Analysis
+We analyzed the client’s written draft (“Instrument complementar terapiei”) and related materials to extract relevant requirements. Document analysis involves reviewing existing documentation to identify key information and needs.
+The main document was the client’s concept outline describing features for patients and psychologists under the conceptual name “PSYCare România.” We also reviewed similar apps’ feature lists and domain-specific regulations (e.g., GDPR compliance).
+This method was ideal because the client had already prepared a detailed draft. Document analysis provides a solid foundation by capturing what stakeholders have already defined and highlighting any gaps or unspoken requirements. Reviewing competitor and regulatory documents also ensured alignment with industry standards.
+Each team member reviewed the client’s document, highlighted key points, and compiled a list of requirements and follow-up questions. We cross-checked these with competitor features to validate completeness. This produced a preliminary, evolving requirements list that we refined throughout the elicitation process.
+
+Identified Requirements (from Document Analysis): Based on the document review, we extracted the following features and preliminary requirements for the app (as stated or implied in the documents):
+•	The system must provide a complementary instrument to therapy that links sessions, supports daily monitoring, and eases collaboration.
+•	The system must include an emotional digital journal to capture daily mood, emotions, and automatic thoughts via text, emoji, and voice input.
+•	The system must support self-monitoring with charts for mood, anxiety, sleep, and stress trends.
+•	The system must offer interactive therapeutic exercises (e.g., mindfulness, CBT, breathing, relaxation, gradual exposure).
+•	The system must allow therapists to assign, track, and remind patients about therapeutic homework and exercises.
+•	The system must deliver psychoeducation via short videos, podcasts, and infographics with adaptable content.
+•	The system must include a prominently accessible crisis button linking to emergency lines (e.g., 112), the patient’s psychologist, and designated support contacts.
+•	The system must generate a progress dashboard with weekly reports derived from patient data.
+•	The system must enable asynchronous feedback, allowing therapists to send short messages or suggestions between sessions.
+•	The system must provide a dedicated homework space to upload/complete tasks and track completion status.
+•	The system must detect risk signals (e.g., suicidal ideation, abrupt worsening) and notify the psychologist with configurable alerts.
+•	The system must integrate a calendar for scheduling sessions (online and offline) with automatic reminders.
+•	The system must support SMS and WhatsApp appointment reminders where permitted.
+•	The system must integrate with video platforms (e.g., Zoom, Google Meet) for online sessions.
+•	The system must maintain electronic patient records, including history, session notes, and evaluations.
+•	The system must administer standardized assessments (e.g., anxiety, depression, stress) with automatic scoring and longitudinal tracking.
+•	The system must provide real-time progress monitoring through graphs and exportable reports.
+•	The system must include secure, encrypted chat that supports asynchronous messaging and short voice messages.
+•	The system must allow psychologists to review patients’ daily journals and emotional check-ins.
+•	The system must offer a digital library of worksheets, exercises, and psychoeducational materials that can be shared with patients.
+•	The system must support discovery and citation of academic resources via integration with academic databases.
+•	The system must provide a community forum for psychologists for practice exchange and supervision.
+•	The system must support billing with automatic invoice/receipt generation, including PFA/SRL formats.
+•	The system must produce monthly activity reports suitable for requirements of the Colegiul Psihologilor din România (CPR).
+•	The system must implement confidentiality, privacy, and security controls compliant with GDPR and (if applicable) HIPAA.
+•	The system must provide secure, redundant data backups with documented recovery procedures.
+•	The system must support break reminders and gentle stress self-monitoring nudges for users’ wellbeing.
+•	The system must offer personal/professional development resources such as webinars and trainings.
+•	The system must simplify administrative tasks, support therapy delivery, and facilitate collaboration while meeting ethical/legal standards (GDPR, CPR).
+•	The system must present a patient-facing dashboard with: “How do you feel today?” quick check-in (emoji, 1–10), mood trend graph, Journal access, quick Exercises, and Emergency help.
+•	The system must present a clinician dashboard listing active patients, risk alerts, and progress graphs (emotions, test scores).
+•	The system must provide a patient file view with session history, private notes, and completed forms/tests.
+•	The system must support culturally adapted content and test norms suitable for Romania (including topics like parental migration, stigma, financial stress).
+•	The system must include a database of standardized tests adapted and validated for Romanian context.
+•	The system must be bilingual (RO–EN) to support the Romanian diaspora and local users.
+•	The system must allow configuration for potential future integration with CNAS reimbursement workflows.
+•	The system must allow therapists to assign exercises and tests directly from within the app to specific patients or groups.
+•	The system must enable export/sharing of reports and records in common formats (e.g., PDF/CSV) with access controls.
+•	The system must log and audit key actions (e.g., record access, edits, data exports) to support compliance.
+•	The system must provide role-based access control for therapists, admins, and patients with least-privilege defaults.
+•	The system must support consent management (capture, update, and audit of informed consent and data-processing consents).
+•	The system must support data residency/storage in the EU and document subprocessors, aligning with GDPR requirements.
+•	The system must provide configurable notification settings for patients and therapists (email, push, SMS/WhatsApp where permitted).
+•	The system must allow customization of risk thresholds and alert escalation paths by the therapist/clinic.
+•	The system must support integration with external calendars (e.g., Google Calendar, Outlook) for availability and syncing.
+•	The system must ensure high availability and performance appropriate for clinical use, with SLAs documented for uptime and support.
+•	The system must provide clear onboarding, in-app guidance, and accessible UI compliant with WCAG best practices.
+•	The system must allow administrators to manage clinic branding, locations, services, pricing, and invoice templates.
+•	The system must provide APIs/webhooks for interoperable data exchange (subject to consent and security controls).
+•	The system must enable de-identification/anonymization options for analytics and research where applicable.
+•	The system must support account recovery, MFA, and device/session management for security.
+•	The system must allow data subject rights handling (access, rectification, deletion, portability) per GDPR.
+•	The system must allow clinicians to generate summaries tailored to CPR reporting requirements and export them monthly.
+•	The system must present clear disclaimers that it complements—not replaces—medical/psychological care and provide guidance for emergencies.
+2. Interview with the Client
+We conducted a semi-structured interview with the primary stakeholder - the client, who is a clinical psychologist - to clarify and expand on the requirements from her perspective. The interview took place on October 10th at 16:00 via an online Teams meeting. Our entire team of four was present. 
+Before the meeting, we prepared a list of questions. We used a semi-structured format, meaning we had planned questions but also let the conversation flow naturally. This allowed us to ask new questions based on the client’s responses and seek clarification on any unclear points from the document analysis.
+We obtained the client’s consent to record the conversation for note-taking purposes. After the interview, we reviewed the recording and our notes to extract the key information and any additional requirements mentioned. This interview was crucial in capturing the stakeholder’s own words and priorities and it helped us understand the reasoning behind certain features. It also allowed the client to introduce new ideas that were not in the original document and to emphasize which features were most essential from her perspective.
+An interview with the client was an obvious choice because it enables direct communication and rich information gathering. This one-on-one (or one-on-team) session let us explore the client’s vision in depth. Unlike just reading a document, we could ask “why” certain features are needed, probe into how she expects them to work and uncover any implicit requirements. It also helped build a good working relationship and trust with the client, which is important for ongoing collaboration. Interviews are one of the most effective techniques to elicit requirements because they provide immediate clarification and the chance to understand stakeholder needs and expectations in detail.
+The interview was with the client, who is a licensed psychologist and the initiator of the project (the primary stakeholder). We did not interview other stakeholders (patients or other psychologists) at this early stage; instead, the client acted as the representative voice of end-users based on her professional experience. All four members of our development team participated in the meeting.
+During the interview, we covered many questions. Here are a few key questions we asked and a summary of the client’s answers (in her own words, as closely as possible):
+•	Q: What are the essential features you want the patient side of the app to have?
+A: The client emphasizes the need for an emotional journal. She clarified that this isn’t just a private diary; it’s a “therapeutic” tool for the patient, but it must also be visible to the psychologist. Alongside this, she wants an “emotional thermometer” (a daily check-in scale of how the client is feeling). A critical safety feature is the “panic button” that will alert the psychologist. For high-risk patients, she also requested an “open chat”. Finally, the app should provide educational video resources or “animes”, but these must be in a separate feed so patients can access them voluntarily.
+•	Q: What features do you need on the psychologist’s side of the app?
+A: “A critical requirement for the psychologist’s side is the need for two interfaces. The psychologist must see the patient’s data, but the patient cannot see the psychologist’s data. This allows the psychologist to write private notes while presenting the patient with information and advice.
+•	Q: At the end of a live session, would it be useful for you to have a section to complete a form or report about that session?
+A: “Yes, after every session, the psychologist fills out a “report”. This document notes “elements of progress or regress” and professional observations, which are private from the patient.
+Identified Requirements (from Interview): From the client interview, we confirmed many of the requirements from the document and also gathered additional ones or clearer details. Key requirements stated by the client include:
+•	The system must be multi-platform, usable on both mobile and desktop, with synchronized data.
+•	The system must provide two distinct interfaces: one for patients/clients and one for psychologists.
+•	The system must implement strict role-based access control, ensuring that:
+•	Psychologists can view patient data.
+•	Patients cannot view therapist-only notes or diagnoses.
+•	Therapists choose what information to share and when.
+•	The system must enable secure, encrypted communications (text and video) built directly into the platform.
+•	The system must avoid exposing users to third-party platforms (e.g., Google Meet) where privacy risks are higher.
+•	The system must safely handle external resources and links to prevent user exposure to unsafe content or phishing.
+•	The system must include a calendar/session-tracking feature that records session dates, counts, and upcoming appointments.
+•	The system must allow flexible session scheduling frequencies, adjustable by the therapist.
+•	The system must provide a daily emotional self-rating tool (e.g., 1–5 or 1–10 scale), optionally visualized with color states.
+•	The system must include a journal for the patient to record thoughts, emotions, and behaviors, which can be shared with the therapist.
+•	The system must enable therapists to review week-to-week patient progress across emotions, thoughts, and behavioral patterns.
+•	The system must allow therapists to complete per-session summaries and feedback notes.
+•	The system must provide a dashboard for therapists to quickly view patient status and new journal entries without intrusive notifications.
+•	The system must store emergency contact details (“circle of safety”) for each patient.
+•	The system must deliver standardized psychological tests (e.g., BDI-II) within the app.
+•	The system must automatically score tests, including reverse-scored items.
+•	The system must include a test repository visible only to the therapist, who assigns tests selectively to patients.
+•	The system must allow patients to view test results in simplified form, while keeping full interpretation with the therapist.
+•	The system must include a Panic/Emergency button for the patient that triggers real-time alerts to the therapist.
+•	The system must support an optional always-open communication channel during high-risk periods, enabled jointly by therapist and patient.
+•	The system must support group therapy via secure group video or group chat, with capacity for ~12 participants moderated by the therapist.
+•	The system must support asynchronous, encrypted messaging between sessions, including short voice notes.
+•	The system must provide psychoeducational materials (articles, videos, etc.), which patients may access on demand.
+•	The system must allow psychologists to curate or approve psychoeducational content; optionally an admin may upload content on their behalf.
+•	The system must allow psychologists to track income and expenses relevant to their practice (e.g., rent, materials, professional fees).
+•	The system must provide reminders for required tax submissions (e.g., ANAF declarations) and annual professional dues (e.g., Colegiul Psihologilor).
+•	The system must provide access to continuing-education information, including conferences and workshops relevant to required annual credits.
+•	The system must provide configurable break and wellbeing reminders for therapists (e.g., hydration, short breaks, eye rest).
+•	The system must optionally provide mindfulness, breathing, or relaxation micro-exercises for therapists.
+•	The system must optionally support medication reminders for therapists who use a personal plan.
+•	The system must support parent/guardian-managed accounts for minors, where:
+•	The parent controls permissions and consent.
+•	The child accesses only appropriate educational content.
+The interview validated many of the items from the document analysis (like the journal, mood tracker, panic button, etc.) and added more depth (e.g., how the psychologist envisions using them). It also brought new considerations (group therapy, financial tracking, etc.) that we added to our requirements list.
+3. Team Brainstorming Session
+Brainstorming is a group elicitation technique where participants freely generate and build upon ideas, requirements, or solutions. The participants were the four members of our development team. No external stakeholders were present, but we simulated different user perspectives (patient, psychologist, admin) to inspire diverse insights.
+Brainstorming leverages the team’s collective creativity and technical knowledge to uncover missing or innovative ideas. It’s useful after initial elicitation to capture “unknown unknowns” and to expand upon what the client provided.
+The team listed all known requirements from the interview and document analysis, then explored “what else” and “what if” questions for each major function (journaling, scheduling, etc.). Ideas such as AI-based mood prediction and gamification were discussed. After idea generation, we prioritized feasible and valuable suggestions, creating an enhanced and well-rounded set of requirements for client validation.
+
+Identified Requirements (from Brainstorming): The brainstorming confirmed many of the requirements already gathered, and added a few new ones or refinements. We organized the final set of requirements into categories for clarity:
+Patient-Facing System Requirements
+•	The system must provide an emotional digital journal where patients can log thoughts, feelings, and automatic thoughts via text, emojis, or short audio notes.
+•	The system must allow patients to share journal entries with their psychologist at their discretion.
+•	The system must support self-monitoring by allowing patients to track metrics such as mood, anxiety, sleep quality, and stress over time.
+•	The system must display progress trends to patients through simple graphs or charts.
+•	The system must send therapeutic task reminders for psychologist-assigned homework tasks or exercises.
+•	The system must allow patients to view upcoming therapy sessions on an integrated calendar.
+•	The system must send automatic appointment reminders via in-app notifications, SMS, or WhatsApp (where permitted).
+•	The system must provide a secure, encrypted communication channel for patient-therapist messaging, supporting text and short voice messages.
+•	The system must ensure patients cannot access therapist-only notes, diagnostic assessments, or internal evaluations unless the therapist explicitly grants access.
+Psychologist-Facing System Requirements
+•	The system must provide a complete electronic patient record including personal details, session history, clinical notes, and assessment results.
+•	The system must allow psychologists to add per-session summaries, progress notes, treatment plans, and observations.
+•	The system must include an integrated calendar for scheduling one-time or recurring sessions, with automated reminders to both psychologist and patient.
+•	The system must support secure virtual sessions via either built-in video conferencing or secure integrations with platforms such as Zoom/Google Meet.
+•	The system must provide a patient dashboard showing active clients, upcoming appointments, recent journal submissions, and any high-risk alerts.
+•	The system must generate visual progress monitoring reports based on patient self-reported data and assessment outcomes.
+•	The system must provide a secure, encrypted messaging channel for psychologists to send supportive feedback or follow-up questions asynchronously.
+•	The system must support administrative reporting by generating monthly or configurable activity reports (e.g., number of sessions, hours worked, client counts) suitable for professional requirements such as Colegiul Psihologilor submissions.
+•	The system must allow psychologists to control what test results, interpretations, or feedback are visible to the patient.
+•	The system must strictly separate therapist-only clinical notes from patient-viewable information.
+General Platform Requirements
+•	The system must be available as a mobile app (iOS/Android) and as a web/desktop application, with real-time synchronized data across devices.
+•	The system must offer a bilingual interface (Romanian and English), allowing users to select their preferred language, with full feature availability in both.
+•	The system must implement strong security and data protection measures, including:
+o	End-to-end encryption for chat and video communication.
+o	Secure user authentication (e.g., strong passwords and/or two-factor authentication).
+o	Regular encrypted data backups.
+o	GDPR-compliant data storage (e.g., EU-based servers or approved safeguards).
+•	The system must implement clear role-based access control, distinguishing patient, psychologist, and (if applicable) administrator permissions.
+•	The system must restrict administrator access to non-confidential functions unless explicitly authorized for clinical oversight.
+•	The system must maintain audit logs of access and changes to sensitive data for regulatory compliance and security review.
+Conclusion
+In summary, we identified the key stakeholders and used three elicitation techniques to gather requirements for the “PSYCare România” therapy companion app. Through Document Analysis, we captured the client’s initial vision and industry standards; the Client Interview allowed us to clarify and expand on those ideas in the stakeholder’s own words; and a Team Brainstorming Session helped us uncover additional features and ensure we had a comprehensive set of requirements.
+We have documented all the requirements elicited from our stakeholders above. These include a rich feature set for both patients and psychologists, ranging from daily mood tracking and journaling on the patient side to scheduling, record-keeping, and analytics on the therapist side, all wrapped in a secure and compliant platform.
+This elicitation phase results will guide us in the next steps of the project. All requirements listed will serve as the foundation for the system’s design and development, even though not every “nice-to-have” may be built in the initial version. 
+
+Sim Robert, Uleia Vlad, Mina Patriciu, Dragota Robert

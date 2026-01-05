@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">{{ patient.display_name }} — Mood</h1>
+    <a class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm" href="{{ url_for('therapist.patients') }}">
+      <i class="fas fa-arrow-left fa-sm text-white-50"></i> Back
+    </a>
+  </div>
+
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Mood check-ins</h6>
+    </div>
+    <div class="card-body">
+      {% if entries %}
+        <ul class="list-group">
+          {% for m in entries %}
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Rating: <strong>{{ m.rating }}</strong> {% if m.note %}<span class="text-muted">— {{ m.note }}</span>{% endif %}</span>
+              <span class="text-muted small">{{ m.created_at.strftime('%Y-%m-%d %H:%M') }}</span>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="text-muted mb-0">No mood entries yet.</p>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

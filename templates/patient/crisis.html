@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Crisis / Emergency</h1>
+  </div>
+
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-danger">Quick actions</h6>
+    </div>
+    <div class="card-body">
+      <div class="alert alert-warning">
+        This app complements therapy and does not replace emergency or medical care.
+        If you are in immediate danger, call your local emergency number.
+      </div>
+
+      <ul>
+        <li>Emergency (Romania): <strong>112</strong></li>
+        <li>If you have a trusted contact, call them now.</li>
+      </ul>
+
+      <form method="post" class="mt-3">
+        {{ csrf_token() }}
+        <button class="btn btn-danger btn-icon-split" type="submit" onclick="return confirm('Send an alert to your therapist?')">
+          <span class="icon text-white-50"><i class="fas fa-exclamation-triangle"></i></span>
+          <span class="text">Panic Button (alert therapist)</span>
+        </button>
+        <a class="btn btn-link" href="{{ url_for('patient.dashboard') }}">Back</a>
+      </form>
+
+      {% if not therapist_link %}
+        <p class="text-muted mt-3 mb-0">You are not linked to a therapist yet, so the alert will be stored without a recipient.</p>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}
