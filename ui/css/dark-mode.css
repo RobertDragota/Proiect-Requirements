@@ -1,6 +1,215 @@
-/* Light-dark "dim" theme for SB Admin 2.
-   Keeps the existing palette but reduces glare (no full inversion). */
+/* Gruvbox-ish soft dark theme overrides for SB Admin 2.
+   Applies only when html.dark-mode is present (toggled in templates/base.html).
+   Palette reference (soft): bg #32302f, bg0 #282828, fg #ebdbb2, fg dim #d5c4a1,
+   gray #a89984, border #504945, red #cc241d, green #98971a, yellow #d79921,
+   blue #458588, purple #b16286, aqua #689d6a, orange #d65d0e.
+*/
 
 html.dark-mode {
-  filter: brightness(0.88) contrast(1.05) saturate(0.95);
+  color-scheme: dark;
+}
+
+html.dark-mode body {
+  background-color: #282828;
+  color: #ebdbb2;
+}
+
+/* Page chrome */
+html.dark-mode #content-wrapper,
+html.dark-mode #content {
+  background-color: #282828;
+}
+
+html.dark-mode .topbar.navbar {
+  background-color: #32302f !important;
+  border-bottom: 1px solid #504945;
+}
+
+html.dark-mode .topbar .nav-link,
+html.dark-mode .topbar .text-gray-600,
+html.dark-mode .topbar .dropdown-item {
+  color: #ebdbb2 !important;
+}
+
+html.dark-mode .topbar .dropdown-menu {
+  background-color: #32302f;
+  border-color: #504945;
+}
+
+html.dark-mode .topbar .dropdown-divider {
+  border-top-color: #504945;
+}
+
+html.dark-mode .sidebar,
+html.dark-mode .sidebar.bg-gradient-primary {
+  background-image: none !important;
+  background-color: #3c3836 !important;
+}
+
+html.dark-mode .sidebar .sidebar-brand,
+html.dark-mode .sidebar .sidebar-brand-text,
+html.dark-mode .sidebar .nav-link,
+html.dark-mode .sidebar .sidebar-heading {
+  color: #ebdbb2 !important;
+}
+
+html.dark-mode .sidebar .nav-item.active .nav-link,
+html.dark-mode .sidebar .nav-link:hover {
+  background-color: rgba(235, 219, 178, 0.06);
+}
+
+html.dark-mode .sidebar-divider {
+  border-top-color: rgba(235, 219, 178, 0.12);
+}
+
+/* Cards & containers */
+html.dark-mode .card,
+html.dark-mode .card-body,
+html.dark-mode .card-header {
+  background-color: #32302f;
+  color: #ebdbb2;
+}
+
+html.dark-mode .card {
+  border-color: #504945;
+}
+
+html.dark-mode .card-header {
+  border-bottom-color: #504945;
+}
+
+html.dark-mode .shadow,
+html.dark-mode .shadow-sm {
+  box-shadow: none !important;
+}
+
+/* Tables & list groups */
+html.dark-mode .table {
+  color: #ebdbb2;
+}
+
+html.dark-mode .table thead th {
+  border-bottom-color: #504945;
+}
+
+html.dark-mode .table td,
+html.dark-mode .table th {
+  border-top-color: #504945;
+}
+
+html.dark-mode .list-group-item {
+  background-color: #32302f;
+  color: #ebdbb2;
+  border-color: #504945;
+}
+
+/* Forms */
+html.dark-mode .form-control,
+html.dark-mode .custom-select,
+html.dark-mode .input-group-text {
+  background-color: #3c3836;
+  color: #ebdbb2;
+  border-color: #504945;
+}
+
+html.dark-mode .form-control::placeholder {
+  color: #a89984;
+}
+
+html.dark-mode .form-control:focus {
+  background-color: #3c3836;
+  color: #ebdbb2;
+  border-color: #458588;
+  box-shadow: 0 0 0 0.2rem rgba(69, 133, 136, 0.25);
+}
+
+html.dark-mode label,
+html.dark-mode .small {
+  color: #d5c4a1;
+}
+
+/* Links */
+html.dark-mode a {
+  color: #83a598;
+}
+
+html.dark-mode a:hover {
+  color: #8ec07c;
+}
+
+/* Buttons (map common Bootstrap colors to gruvbox accents) */
+html.dark-mode .btn-primary {
+  background-color: #458588;
+  border-color: #458588;
+}
+
+html.dark-mode .btn-success {
+  background-color: #98971a;
+  border-color: #98971a;
+}
+
+html.dark-mode .btn-danger {
+  background-color: #cc241d;
+  border-color: #cc241d;
+}
+
+html.dark-mode .btn-warning {
+  background-color: #d79921;
+  border-color: #d79921;
+  color: #282828;
+}
+
+html.dark-mode .btn-secondary,
+html.dark-mode .btn-outline-secondary {
+  color: #ebdbb2;
+  border-color: #665c54;
+}
+
+html.dark-mode .btn-secondary {
+  background-color: #504945;
+}
+
+html.dark-mode .btn-outline-secondary:hover {
+  background-color: #504945;
+  border-color: #504945;
+}
+
+/* Alerts */
+html.dark-mode .alert {
+  border-color: #504945;
+}
+
+html.dark-mode .alert-success {
+  background-color: rgba(152, 151, 26, 0.18);
+  color: #ebdbb2;
+}
+
+html.dark-mode .alert-danger {
+  background-color: rgba(204, 36, 29, 0.18);
+  color: #ebdbb2;
+}
+
+html.dark-mode .alert-warning {
+  background-color: rgba(215, 153, 33, 0.18);
+  color: #ebdbb2;
+}
+
+html.dark-mode .alert-info {
+  background-color: rgba(69, 133, 136, 0.18);
+  color: #ebdbb2;
+}
+
+/* Footer */
+html.dark-mode .sticky-footer {
+  background-color: #32302f !important;
+  border-top: 1px solid #504945;
+}
+
+html.dark-mode .sticky-footer span {
+  color: #a89984;
+}
+
+/* Scroll-to-top button */
+html.dark-mode .scroll-to-top {
+  background-color: #504945;
 }
