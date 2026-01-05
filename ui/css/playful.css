@@ -1,0 +1,46 @@
+/* Playful/modern tweaks while staying within SB Admin 2 styling.
+   No new colors, no new font families, no custom shadows. */
+
+/* Slightly larger, cleaner base typography */
+body {
+  font-size: 0.95rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Softer, more modern shapes */
+.card,
+.dropdown-menu,
+.alert {
+  border-radius: 0.9rem;
+}
+
+.btn,
+.form-control,
+.input-group-text,
+.custom-select,
+.list-group-item {
+  border-radius: 0.75rem;
+}
+
+/* Make primary actions feel a bit more "app-like" */
+.btn {
+  font-weight: 600;
+}
+
+/* Reduce visual clutter on cards */
+.card-header {
+  border-top-left-radius: 0.9rem;
+  border-top-right-radius: 0.9rem;
+}
+
+/* Sidebar brand slightly bolder */
+.sidebar .sidebar-brand-text {
+  letter-spacing: 0.02em;
+}
+
+/* Tables/list rows look cleaner */
+.table td,
+.table th {
+  vertical-align: middle;
+}
